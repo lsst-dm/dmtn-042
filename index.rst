@@ -38,14 +38,95 @@
    Feel free to delete this instructional comment.
 
 :tocdepth: 1
-.. Please do not modify tocdepth; will be fixed when a new Sphinx theme is shipped.
-
 .. sectnum::
 
-.. Add content below. Do not include the document title.
 
-.. note::
+.. warning::
+   Work in progress! Authors of unsolicited comments will be tracked down and
+   terminated with extreme prejudice including but not limited to drone strikes,
+   voodoo curses, and reciting Vogon poetry.
 
-   **This technote is not yet published.**
+Overview
+========
 
-   This document describes in detail the process of creating workflows for Batch Prodcustion Services.
+Introduction
+============
+
+Generic pipeline
+================
+
+Expanded pipeline
+=================
+
+An **expanded pipeline** is a ordered collection of transformational steps with
+actual resources (configuration, log, input, and output files) *explicitly*
+specified.
+
+Requirements
+------------
+
+An expanded pipeline shall be used to:
+
+- determine input files that are needed to be pre-stage for a given pipeline,
+- create a corresponding representation of the pipeline in the format
+  recognized by the workflow management system used by Batch Production
+  Services (e.g.  DAX).
+
+An expanded pipeline shall be represented by a directed, acyclic **bipartie**
+graph (or **bigraph**) as its elements, nodes, can be decomposed into two
+*disjoint* sets **Files** and **Tasks** and edges only connect nodes from the
+opposite sets.
+
+.. figure:: /_static/graph.png
+
+   An example expanded pipeline.
+
+Any information other than order of execution and data dependency shall be
+provided in form of node **properties** (key-value pairs).
+
+An expanded pipeline shall be specified in lightweight, preferably
+human-readable, data-interchange format (e.g. GraphML, JSON, YAML).
+
+Task
+----
+
+name
+    The name of the LSST task responsible for a given transformational step.
+
+requirements
+    Minimal values regarding memory, CPU and disk usage required for the task
+    to run.
+    
+arguments
+    Command line arguments required to run the LSST task for provided input data
+    sets.
+
+File
+----
+
+lfn
+    Logical file name.
+
+pfn
+    Physical file name.
+
+scientific metadata
+    Any information required by the `data butler`__ to ingest the file to a
+    dataset repository, e.g.
+
+    - `dataset type`__,
+    - `dataId`__
+
+operational metadata
+    Any properties the Operating Organization deems important for providing 
+    operation of the service including, but not limited to:
+
+    - size,
+    - mdsum,
+    - path to shared filesystem
+    - path to local scratch space
+    - flags either for Campaign Manager or workflow management system
+
+.. __: https://ldm-463.lsst.io/v/draft/index.html#butler
+.. __: https://ldm-463.lsst.io/v/draft/index.html#dataset-type
+.. __: https://ldm-463.lsst.io/v/draft/index.html#dataid    
