@@ -93,13 +93,13 @@ Task
 name
     The name of the LSST task responsible for a given transformational step.
 
-requirements
-    Minimal values regarding memory, CPU and disk usage required for the task
-    to run.
-    
 arguments
     Command line arguments required to run the LSST task for provided input data
     sets.
+
+requirements
+    Minimal values regarding memory, CPU and disk usage required for the task
+    to run.
 
 File
 ----
@@ -107,8 +107,8 @@ File
 lfn
     Logical file name.
 
-pfn
-    Physical file name.
+pfns
+    List of ordered pairs (tuples) <physical file name>, <site>.
 
 scientific metadata
     Any information required by the `data butler`__ to ingest the file to a
@@ -125,7 +125,7 @@ operational metadata
     - mdsum,
     - path to shared filesystem
     - path to local scratch space
-    - flags either for Campaign Manager or workflow management system
+    - flags either for **campaign manager** or **workflow management system**
 
 .. __: https://ldm-463.lsst.io/v/draft/index.html#butler
 .. __: https://ldm-463.lsst.io/v/draft/index.html#dataset-type
