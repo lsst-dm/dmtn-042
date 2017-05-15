@@ -90,6 +90,9 @@ human-readable, data-interchange format (e.g. GraphML, JSON, YAML).
 Task
 ----
 
+id
+    Unique node id.
+
 name
     The name of the LSST task responsible for a given transformational step,
     e.g. ``processCcd``.
@@ -105,6 +108,9 @@ requirements (not implemented)
 
 File
 ----
+
+id
+    Unique node id.
 
 lfn
     Logical file name.
@@ -133,6 +139,12 @@ operational metadata (not implemented)
     - path to shared filesystem
     - path to local scratch space
     - flags either for **campaign manager** or **workflow management system**
+
+
+.. note::
+
+   Current implementation is using consecutive integers as unique node ids
+   though it is not required.  Any Python hashable object can be used.
 
 .. __: https://ldm-463.lsst.io/v/draft/index.html#butler
 .. __: https://ldm-463.lsst.io/v/draft/index.html#dataset-type
