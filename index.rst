@@ -40,11 +40,11 @@
 :tocdepth: 1
 .. sectnum::
 
-
 .. warning::
+
    Work in progress! Authors of unsolicited comments will be tracked down and
-   terminated with extreme prejudice including but not limited to drone strikes,
-   voodoo curses, and reciting Vogon poetry.
+   terminated with extreme prejudice including but not limited to drone
+   strikes, voodoo curses, and reciting Vogon poetry.
 
 Overview
 ========
@@ -91,13 +91,15 @@ Task
 ----
 
 name
-    The name of the LSST task responsible for a given transformational step.
+    The name of the LSST task responsible for a given transformational step,
+    e.g. ``processCcd``.
 
 arguments
     Command line arguments required to run the LSST task for provided input data
-    sets.
+    sets as a space, e.g. ``repo --calib repo --output repo --id visit=903334
+    ccd=16``.
 
-requirements
+requirements (not implemented)
     Minimal values regarding memory, CPU and disk usage required for the task
     to run.
 
@@ -107,17 +109,22 @@ File
 lfn
     Logical file name.
 
-pfns
-    List of ordered pairs (tuples) <physical file name>, <site>.
+urls
+    Coma-separated list of physical file names on available executions sites.
+    The ordering is important! It is assumed that the first file name indicates
+    the file on the first execution site (see below) and so on.
 
-scientific metadata
+sites
+    Coma-separated list of execution sites.  
+
+scientific metadata (not implemented)
     Any information required by the `data butler`__ to ingest the file to a
     dataset repository, e.g.
 
     - `dataset type`__,
     - `dataId`__
 
-operational metadata
+operational metadata (not implemented)
     Any properties the Operating Organization deems important for providing 
     operation of the service including, but not limited to:
 
